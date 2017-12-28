@@ -11,8 +11,8 @@ app.use(express.static(__dirname + '/public')); //since it comes before mainatia
 app.use((req,res,next)=>{                      //middleware
 	var now = new Date().toString();
 	var log = `${now} : ${req.method} ${req.url}`;
-	fs.appendFile('server.log',log +'\n',(err)=> {
-	if (err) console.log('unable to print');})
+	// fs.appendFile('server.log',log +'\n',(err)=> {
+	// if (err) console.log('unable to print');})
 	next();
 });
 // app.use((req,res,next)=>{
@@ -46,8 +46,14 @@ app.get('/',(req,res)=>{
 app.get('/about',(req,res) =>{
 	//res.send('About Page');
 	res.render('about.hbs',{
-		pageTitle : 'About page',
+		pageTitle : 'About page'
 		});
+});
+
+app.get('/projects',(req,res)=>{
+	res.render('projects.hbs',{
+		pageTitle : 'Projects page'
+	});
 });
 app.get('/bad',(req,res) =>{
 	res.send({
